@@ -63,6 +63,9 @@
               />
             </div>
           </div>
+          <div class="items-center hidden px-4 lg:flex">
+            <CartButton />
+          </div>
         </div>
         <div class="flex lg:hidden">
           <!-- Mobile menu button -->
@@ -78,6 +81,7 @@
                 Menu open: "hidden", Menu closed: "block"
               -->
             <svg
+              v-if="!mobileMenuVisible"
               class="block w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -98,7 +102,8 @@
                 Menu open: "block", Menu closed: "hidden"
               -->
             <svg
-              class="hidden w-6 h-6"
+              v-else
+              class="block w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -113,11 +118,6 @@
               />
             </svg>
           </button>
-        </div>
-        <div class="hidden pl-4 space-x-4 lg:flex">
-          <div class="flex items-center">
-            <CartButton />
-          </div>
         </div>
       </div>
     </div>
