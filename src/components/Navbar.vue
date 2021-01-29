@@ -63,11 +63,11 @@
               />
             </div>
           </div>
-          <div class="items-center hidden px-4 lg:flex">
+          <div class="flex items-center px-4">
             <CartButton />
           </div>
         </div>
-        <div class="flex lg:hidden">
+        <div class="flex pl-4 lg:hidden">
           <!-- Mobile menu button -->
           <button
             class="inline-flex items-center justify-center p-2 text-indigo-200 bg-indigo-600 rounded-md hover:text-white hover:bg-indigo-500 hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white"
