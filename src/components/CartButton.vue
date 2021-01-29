@@ -3,11 +3,24 @@ import { defineComponent } from "vue";
 import useCart from "../composables/useCart";
 
 export default defineComponent({
+    data(){
+      return {
+        toggleAnimation: false
+      }
+    },
     setup(){
         const { totalItems } = useCart()
         return {
             totalItems
         }
+    },
+    watch: {
+      totalItems(val, oldVal) {
+        this.toggleAnimation = true;
+        setTimeout(() => {
+          this.toggleAnimation = false;
+        }, 500);
+      }
     }
 });
 </script>
@@ -16,7 +29,7 @@ export default defineComponent({
   <div class="absolute">
     <router-link
       :to="'/cart'"
-      class="flex-shrink-0 p-1 text-indigo-200 bg-indigo-600 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white"
+      class="flex-shrink-0 p-1 text-indigo-200 bg-indigo-600 rounded-full hover:text-white"
     >
       <span class="sr-only">View Cart</span>
       <!-- Heroicon name: bell -->
@@ -36,9 +49,17 @@ export default defineComponent({
       </svg>
       <span 
         v-if="totalItems"
+        :class="{'magictime puffOut': toggleAnimation}"
         class="relative inline-block w-6 p-1 text-xs text-center bg-red-500 border rounded-full left-4 bottom-4">
           {{ totalItems > 99 ? 99 : totalItems}}
       </span>
+
     </router-link>
   </div>
 </template>
+<style scoped>
+  .magictime {
+      -webkit-animation-duration: 0.5s;
+      animation-duration: 0.5s;
+  }
+</style>
