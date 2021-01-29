@@ -106,10 +106,6 @@ const router = createRouter({
 
 const app = createApp(App);
 
-window.addEventListener('storage', () => {
-  console.log('waaaat');
-});
-
 injectProducts();
 app.use(router);
 

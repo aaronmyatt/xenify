@@ -59,13 +59,18 @@ export default function () {
 
   const saveCart = function () {
     window.localStorage.setItem("cart", JSON.stringify({ data: cart.value }));
-    window.dispatchEvent(new Event("storage"));
+  };
+
+  const emptyCart = function () {
+    cart.value = [];
+    saveCart()
   };
 
   fetchCart();
 
   return {
     addToCart,
+    emptyCart,
     cart,
     total,
     totalItems
