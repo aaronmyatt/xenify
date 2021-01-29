@@ -10,11 +10,11 @@
 
 ## Built With
 -  [Vite](https://vitejs.dev/)
--  Vue3
--  Typescript
--  JSX
--  Tailwind
-   -  With templates pulled from Tailwindui
+-  [Vue3](https://v3.vuejs.org/)
+-  [Typescript](https://www.typescriptlang.org/)
+-  [JSX](https://github.com/vitejs/vite/tree/main/packages/plugin-vue-jsx)
+-  [Tailwind](https://tailwindcss.com/)
+   -  With templates pulled from [TailwindUI](https://tailwindui.com)
 
 ## Setup
 1) Setup Bleeding Edge Vite: https://vitejs.dev/guide/#using-unreleased-commits
