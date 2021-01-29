@@ -1,6 +1,6 @@
 <template>
-    <div class="pb-32 bg-indigo-600">
-      <header class="py-10">
+    <div class="bg-indigo-600 sm:pb-32">
+      <header class="py-2 sm:py-10">
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <h1 class="text-3xl font-bold text-white">
             <slot name="header"></slot>
@@ -9,12 +9,10 @@
       </header>
     </div>
 
-    <main class="-mt-32">
-      <div class="px-4 pb-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <main class="sm:-mt-32">
+      <div class="pb-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="px-5 py-6 bg-white rounded-lg shadow sm:px-6">
-          <div class="border-4 border-gray-200 border-dashed rounded-lg">
-            <slot></slot>
-          </div>
+          <slot></slot>
         </div>
       </div>
     </main>
