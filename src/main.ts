@@ -99,8 +99,10 @@ const injectProducts = (): void => {
   }
 };
 
+// @ts-ignore
+const baseRoute = import.meta.env.PROD === true ? '/xenify/' : '/'
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(baseRoute),
   routes,
 });
 
