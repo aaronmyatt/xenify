@@ -8,11 +8,13 @@
       >
         <div class="flex items-center px-2 lg:px-0">
           <div class="flex-shrink-0">
-            <img
-              class="block w-8 h-8"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-300.svg"
-              alt="Workflow"
-            />
+            <router-link :to="'/'">
+              <img
+                class="block w-8 h-8"
+                src="https://tailwindui.com/img/logos/workflow-mark-indigo-300.svg"
+                alt="Workflow"
+              />
+            </router-link>
           </div>
           <div class="hidden lg:block lg:ml-10">
             <div class="flex space-x-4">
@@ -124,7 +126,7 @@ export default defineComponent({
   name: "Navbar",
   components: {
     CartButton,
-    SearchBar
+    SearchBar,
   },
   data() {
     return {
