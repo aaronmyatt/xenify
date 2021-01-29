@@ -6,7 +6,12 @@ export default defineComponent({
   props: ["productId", "name", "price", "image", "description"],
   render() {
     return (
-      <div class="border-2 border-transparent rounded-lg">
+      <div
+        ref="pcard"
+        class={`border-2 border-transparent rounded-lg ${
+          this.toggleAnimation ? this.animation : ""
+        }`}
+      >
         <router-link
           to={{
             name: "product-id",
@@ -62,12 +67,11 @@ export default defineComponent({
                 <span class="ml-3">Details</span>
               </router-link>
             </div>
-            <div
-              class="flex flex-1 w-0 -ml-px"
-            >
-              <button 
+            <div class="flex flex-1 w-0 -ml-px">
+              <button
                 onClick={this.addToCart}
-                class="relative inline-flex items-center justify-center flex-1 w-0 py-4 text-sm font-medium text-gray-700 border border-transparent rounded-br-lg hover:text-gray-500">
+                class="relative inline-flex items-center justify-center flex-1 w-0 py-4 text-sm font-medium text-gray-700 border border-transparent rounded-br-lg hover:text-gray-500"
+              >
                 <svg
                   class="w-5 h-5 text-gray-400"
                   xmlns="http://www.w3.org/2000/svg"
@@ -90,11 +94,73 @@ export default defineComponent({
       </div>
     );
   },
+  data() {
+    return {
+      toggleAnimation: false,
+      animation: "magictime slideUp",
+    };
+  },
   setup(props) {
     const { addToCart } = useCart();
     return {
-      addToCart: () => addToCart(props.productId-1),
+      addToCart: () => addToCart(props.productId - 1),
+    };
+  },
+  mounted() {
+    var touchstartY = 0;
+    var touchendY = 0;
+    var touchstartX = 0;
+    var touchendX = 0;
+
+    this.$refs.pcard.addEventListener(
+      "touchstart",
+      function (event) {
+        touchstartY = event.changedTouches[0].screenY;
+        touchstartX = event.changedTouches[0].screenX;
+      },
+      false
+    );
+
+    this.$refs.pcard.addEventListener(
+      "touchend",
+      function (event) {
+        touchendY = event.changedTouches[0].screenY;
+        touchendX = event.changedTouches[0].screenX;
+        handleSwipe();
+      },
+      false
+    );
+
+    const handleSwipe = () => {
+      const xDiff = Math.abs(touchstartX - touchendX)
+      const yDiff = Math.abs(touchstartY - touchendY)
+
+      if(xDiff > yDiff || yDiff < 20) return
+
+      if (touchendY > touchstartY) {
+        // this.addToCart();
+        this.animation = "magictime slideDown";
+        this.toggleAnimation = true;
+        setTimeout(() => {
+          this.toggleAnimation = false;
+        }, 500);
+      }
+      if (touchendY < touchstartY) {
+        this.animation = "magictime slideUp";
+        this.toggleAnimation = true;
+        setTimeout(() => {
+          this.toggleAnimation = false;
+        }, 500);
+      }
+
+      this.addToCart()
     };
   },
 });
 </script>
+<style scoped>
+.magictime {
+  -webkit-animation-duration: 100ms;
+  animation-duration: 100ms;
+}
+</style>

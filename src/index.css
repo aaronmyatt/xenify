@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .scroll-snap-none {
+    scroll-snap-type: none;
+  }
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+  .scroll-snap-y {
+    scroll-snap-type: y;
+  }
+  .grid-horizontal-full {
+    grid: 1fr / auto-flow 100vw;
+  }
+}
+
 /*!
  * Magic - https://www.minimamente.com
  * Licensed under the MIT license - https://opensource.org/licenses/MIT
