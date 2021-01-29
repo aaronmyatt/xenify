@@ -57,6 +57,7 @@ export default defineComponent({
                   Total: ${this.total}
                 </span>
                 <Button
+                  action={ () => { alert(`Didn't get to the API integratio sadly.`) } }
                   v-slots={{
                     default: () => "Checkout",
                   }}

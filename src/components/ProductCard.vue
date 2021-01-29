@@ -99,7 +99,7 @@ export default defineComponent({
               ></img>
             </div>
             <h3 class="mt-6 text-sm font-medium text-gray-900">
-              {this.name} { this.description ? `- $ ${this.price}` : '' }
+              {this.name} { this.description ? `- $${this.price}` : '' }
             </h3>
             <dl class="flex flex-col justify-between flex-grow mt-1">
               <dt class="sr-only">Product Description</dt>

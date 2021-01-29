@@ -35,12 +35,20 @@ export default defineComponent({
     return (
       <div>
         <Layout>
-          <ul class="grid gap-6 overflow-y-auto sm:hidden grid-horizontal-full scroll-snap-x overscroll-contain sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:auto-rows-auto">
-            {productList}
-          </ul>
-          <ul class="hidden gap-6 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:auto-rows-auto">
-            {productList}
-          </ul>
+          <div class="block sm:hidden">
+            <ul class="flex flex-col items-center p-2 mb-2 bg-yellow-200 rounded-full ">
+              <li>Swipe up or down for: Add To Cart</li>
+              <li>Swipe left/right to browse</li>
+            </ul>
+            <ul class="grid gap-6 overflow-y-auto sm:hidden grid-horizontal-full scroll-snap-x overscroll-contain sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:auto-rows-auto">
+              {productList}
+            </ul>
+          </div>
+          <div>
+            <ul class="hidden gap-6 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:auto-rows-auto">
+              {productList}
+            </ul>
+          </div>
         </Layout>
       </div>
     );
