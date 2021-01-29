@@ -3,40 +3,22 @@ import { defineComponent, withModifiers } from "vue";
 import useCart from "../composables/useCart";
 
 export default defineComponent({
-  props: ["productId", "name", "price", "image", "description"],
+  props: {
+    productId: Number,
+    name: String,
+    price: Number,
+    image: String,
+    description: String,
+    displayActionBar: {
+      type: Boolean,
+      default: true
+    }
+  },
   render() {
-    return (
-      <div
-        ref="pcard"
-        class={`border-2 border-transparent rounded-lg ${
-          this.toggleAnimation ? this.animation : ""
-        }`}
-      >
-        <router-link
-          to={{
-            name: "product-id",
-            params: {
-              id: this.productId,
-            },
-          }}
-        >
-          <div class="flex flex-col flex-1">
-            <div class="aspect-w-1 aspect-h-1">
-              <img
-                class="mx-auto bg-black border border-transparent rounded-t-lg"
-                src={this.image}
-                alt=""
-              ></img>
-            </div>
-            <h3 class="mt-6 text-sm font-medium text-gray-900">
-              {this.name} - ${this.price}
-            </h3>
-            <dl class="flex flex-col justify-between flex-grow mt-1">
-              <dt class="sr-only">Product Description</dt>
-              <dd class="text-sm text-gray-500">{this.description}</dd>
-            </dl>
-          </div>
-        </router-link>
+    let actionBar;
+
+    if (this.displayActionBar) {
+      actionBar = (
         <div>
           <div class="flex items-end divide-x divide-gray-200 m-mt-px">
             <div class="flex flex-1 w-0">
@@ -91,6 +73,41 @@ export default defineComponent({
             </div>
           </div>
         </div>
+      );
+    }
+    return (
+      <div
+        ref="pcard"
+        class={`border-2 border-transparent rounded-lg ${
+          this.toggleAnimation ? this.animation : ""
+        }`}
+      >
+        <router-link
+          to={{
+            name: "product-id",
+            params: {
+              id: this.productId,
+            },
+          }}
+        >
+          <div class="flex flex-col flex-1">
+            <div class="aspect-w-1 aspect-h-1">
+              <img
+                class="mx-auto bg-black border border-transparent rounded-t-lg"
+                src={this.image}
+                alt=""
+              ></img>
+            </div>
+            <h3 class="mt-6 text-sm font-medium text-gray-900">
+              {this.name} { this.description ? `- $ ${this.price}` : '' }
+            </h3>
+            <dl class="flex flex-col justify-between flex-grow mt-1">
+              <dt class="sr-only">Product Description</dt>
+              <dd class="text-sm text-gray-500">{this.description}</dd>
+            </dl>
+          </div>
+        </router-link>
+        {actionBar}
       </div>
     );
   },
@@ -132,10 +149,10 @@ export default defineComponent({
     );
 
     const handleSwipe = () => {
-      const xDiff = Math.abs(touchstartX - touchendX)
-      const yDiff = Math.abs(touchstartY - touchendY)
+      const xDiff = Math.abs(touchstartX - touchendX);
+      const yDiff = Math.abs(touchstartY - touchendY);
 
-      if(xDiff > yDiff || yDiff < 20) return
+      if (xDiff > yDiff || yDiff < 20) return;
 
       if (touchendY > touchstartY) {
         // this.addToCart();
@@ -153,7 +170,7 @@ export default defineComponent({
         }, 500);
       }
 
-      this.addToCart()
+      this.addToCart();
     };
   },
 });

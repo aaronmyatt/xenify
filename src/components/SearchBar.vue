@@ -1,8 +1,24 @@
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
+import useSearch from "../composables/useSearch";
 
 export default defineComponent({
-    
+  data() {
+    return {
+      searchTerm: "",
+    };
+  },
+  setup() {
+    const { search } = useSearch();
+    return {
+      search,
+    };
+  },
+  watch: {
+    searchTerm(term){
+      this.search(term);
+    }
+  },
 });
 </script>
 
@@ -30,6 +46,7 @@ export default defineComponent({
       </div>
       <input
         id="search"
+        v-model="searchTerm"
         class="block w-full py-2 pl-10 pr-3 leading-5 text-gray-900 placeholder-gray-500 bg-white border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white focus:border-white sm:text-sm"
         placeholder="Search"
         type="search"

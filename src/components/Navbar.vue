@@ -135,10 +135,6 @@ export default defineComponent({
           label: "Home",
           route: "/",
         },
-        {
-          label: "About",
-          route: "/about",
-        },
       ],
       mobileMenuVisible: false,
     };
